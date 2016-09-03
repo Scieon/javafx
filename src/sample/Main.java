@@ -14,37 +14,58 @@ import javafx.scene.layout.VBox;
 
 public class Main extends Application{ //implements EventHandler<ActionEvent>{
 
-    Scene scene1, scene2;
+    Scene scene1;
+    Label label;
+    Stage window;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        Label label1 =  new Label("Scene 1");
-        Button button1 = new Button("Go to Scene 2");
-        button1.setOnAction(e->primaryStage.setScene(scene2));
-
-        //Layout 1
-        VBox layout1 = new VBox(20); //Spaced out 20px
-        layout1.getChildren().addAll(label1, button1);
-        scene1 = new Scene(layout1, 200, 200);
-
-        Button button2 = new Button("Go back to scene 1");
-        button2.setOnAction(e->primaryStage.setScene(scene1));
-
-        //Layout 2
-        StackPane layout2 = new StackPane();
-        layout2.getChildren().add(button2);
-        scene2 = new Scene(layout2, 600, 300);
-
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+   
+        window = primaryStage;
         primaryStage.setTitle("Project1");
-        primaryStage.setScene(scene1);
+
+        window.setOnCloseRequest(e->{
+            e.consume(); //Consume the exit request
+            closeProgram();
+        });
+
+        Button button = new Button("Click Me");
+        Button closeButton = new Button("Close Button");
+
+        button.setOnAction(e->{
+            boolean result = ConfirmBox.display("Title", "Are you sure you are strong?");
+            System.out.println(result);
+        });
+
+        closeButton.setOnAction(e->closeProgram());
+
+        VBox layout = new VBox();
+        layout.getChildren().addAll(button, closeButton);
+
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
         primaryStage.show();
 
     }
 
+    private void closeProgram(){
+        boolean answer = ConfirmBox.display("Title", "Are you sure you want to exit?");
+        if(answer)
+            window.close();
+    }
+
     public static void main(String[] args) {
+        //Human h1 = new Human();
+        //h1.display();
+        //Human.display();
+
         launch(args);
 
+    }
+
+    public static class Human{
+        public static void display(){
+            System.out.println("Human.display");
+        }
     }
 }
