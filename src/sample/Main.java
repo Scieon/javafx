@@ -1,9 +1,16 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -11,40 +18,60 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.*;
 
-public class Main extends Application{ //implements EventHandler<ActionEvent>{
+import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
+
+public class Main extends Application{ //implements EventHandler<KeyEvent>{
 
     Scene scene1;
     Label label;
     Stage window;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-   
-        window = primaryStage;
-        primaryStage.setTitle("Project1");
+    public void start(Stage window) throws Exception{
 
-        window.setOnCloseRequest(e->{
-            e.consume(); //Consume the exit request
-            closeProgram();
+        window.setTitle("Project Animus");
+
+        Group root = new Group();
+        Scene theScene = new Scene(root);
+        window.setScene( theScene );
+
+        Canvas canvas = new Canvas(512, 400);
+        root.getChildren().add(canvas);
+        window.setResizable(false);
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        Image space = new Image( "/resources/space.png" );
+
+        Player r = new Player(root);
+
+
+//        final int playerWidth = 100;
+//        final int playerHeight = 50;
+//        r.setX(256-playerWidth/2);
+//        r.setY(400);
+//        r.setWidth(playerWidth);
+//        r.setHeight(playerHeight);
+//        r.setArcHeight(20);
+//        r.setArcWidth(20);
+        root.getChildren().add(r);
+
+        theScene.setOnKeyPressed(e->{
+            r.keyPressedEvent(e);
+            System.out.println(e.getCode());
+
+
+            //System.out.println(e.getText()); //gives letter
+            //System.out.println(e.getEventType()); KEY_PRESSED
         });
 
-        Button button = new Button("Click Me");
-        Button closeButton = new Button("Close Button");
-
-        button.setOnAction(e->{
-            boolean result = ConfirmBox.display("Title", "Are you sure you are strong?");
-            System.out.println(result);
-        });
-
-        closeButton.setOnAction(e->closeProgram());
-
-        VBox layout = new VBox();
-        layout.getChildren().addAll(button, closeButton);
-
-        Scene scene = new Scene(layout, 300, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        window.show();
 
     }
 
@@ -55,17 +82,9 @@ public class Main extends Application{ //implements EventHandler<ActionEvent>{
     }
 
     public static void main(String[] args) {
-        //Human h1 = new Human();
-        //h1.display();
-        //Human.display();
 
         launch(args);
 
     }
-
-    public static class Human{
-        public static void display(){
-            System.out.println("Human.display");
-        }
-    }
+    
 }
