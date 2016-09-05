@@ -18,18 +18,18 @@ public class Player extends Rectangle{
         this.setY(400);
         this.setWidth(playerWidth);
         this.setHeight(playerHeight);
-        this.setArcHeight(20);
-        this.setArcWidth(20);
+        //this.setArcHeight(20);
+        //this.setArcWidth(20);
     }
     public void keyPressedEvent(KeyEvent e){
 
         if(e.getCode().toString() == "LEFT"){
-            if(this.getX()>25)
+            if(this.getX()>0)
                 this.setX(this.getX()-25);
         }
 
         if(e.getCode().toString() == "RIGHT"){
-            if(this.getX()+100+25<512)
+            if(this.getX()+100<512)
                 this.setX(this.getX()+25);
         }
 
@@ -46,6 +46,13 @@ public class Player extends Rectangle{
             //this.setHeight(0);
             if(e.getCode().toString() == "SPACE"){
                 //root.getChildren().remove(this);
+                Bullet bullet = new Bullet(10,50, root);
+                bullet.setX(this.getX() + playerWidth/2);
+                bullet.setY(this.getY() - playerHeight);
+                root.getChildren().add(bullet);
+                bullet.move();
+
+
             }
         }
     }

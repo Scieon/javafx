@@ -64,7 +64,7 @@ public class Main extends Application{ //implements EventHandler<KeyEvent>{
 
         theScene.setOnKeyPressed(e->{
             r.keyPressedEvent(e);
-            System.out.println(e.getCode());
+            //System.out.println(e.getCode());
 
 
             //System.out.println(e.getText()); //gives letter
@@ -86,5 +86,5 @@ public class Main extends Application{ //implements EventHandler<KeyEvent>{
         launch(args);
 
     }
-    
+
 }
