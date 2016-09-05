@@ -28,7 +28,6 @@ import static java.lang.Thread.sleep;
 
 public class Main extends Application{ //implements EventHandler<KeyEvent>{
 
-    Scene scene1;
     Label label;
     Stage window;
 
@@ -47,28 +46,16 @@ public class Main extends Application{ //implements EventHandler<KeyEvent>{
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        Image space = new Image( "/resources/space.png" );
+        //Image space = new Image( "/resources/space.png" );
 
         Player r = new Player(root);
 
 
-//        final int playerWidth = 100;
-//        final int playerHeight = 50;
-//        r.setX(256-playerWidth/2);
-//        r.setY(400);
-//        r.setWidth(playerWidth);
-//        r.setHeight(playerHeight);
-//        r.setArcHeight(20);
-//        r.setArcWidth(20);
         root.getChildren().add(r);
 
         theScene.setOnKeyPressed(e->{
             r.keyPressedEvent(e);
-            //System.out.println(e.getCode());
 
-
-            //System.out.println(e.getText()); //gives letter
-            //System.out.println(e.getEventType()); KEY_PRESSED
         });
 
         window.show();

@@ -64,22 +64,5 @@ public class Bullet extends Rectangle {
         th.start();
         //root.getChildren().remove(bullet);
 
-
-
-
-
-
-
-        new AnimationTimer()
-        {
-            public void handle(long currentNanoTime)
-            {
-                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-
-
-            }
-        }.start();
-
-
     }
 }
