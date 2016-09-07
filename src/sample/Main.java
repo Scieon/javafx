@@ -48,10 +48,11 @@ public class Main extends Application{ //implements EventHandler<KeyEvent>{
 
         //Image space = new Image( "/resources/space.png" );
 
-        Player r = new Player(root);
+        Player r = new Player();
+        Enemy mob = new Enemy(root);
+        mob.spawn(1);
 
-
-        root.getChildren().add(r);
+        root.getChildren().addAll(r, mob);
 
         theScene.setOnKeyPressed(e->{
             r.keyPressedEvent(e);

@@ -10,10 +10,10 @@ public class Player extends Rectangle{
 
     private final int playerWidth = 100;
     private final int playerHeight = 50;
-    Group root;
+    private int health;
+    private int score;
 
-    public Player(Group root) {
-        this.root = root;
+    public Player() {
         this.setX(256-playerWidth/2);
         this.setY(400);
         this.setWidth(playerWidth);
@@ -42,16 +42,16 @@ public class Player extends Rectangle{
         }
 
         if(e.getCode().toString()=="SPACE"){
-            //this.setWidth(0);
-            //this.setHeight(0);
+
             if(e.getCode().toString() == "SPACE"){
                 //root.getChildren().remove(this);
-                Bullet bullet = new Bullet(10,50, root);
+                //Root should be here since it cannot be initialized in constructor (null pointer)
+                Group root = (Group)this.getParent();
+                Bullet bullet = new Bullet(10,50);
                 bullet.setX(this.getX() + playerWidth/2);
                 bullet.setY(this.getY() - playerHeight);
                 root.getChildren().add(bullet);
-                bullet.move2();
-
+                bullet.move();
 
             }
         }
