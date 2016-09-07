@@ -50,7 +50,7 @@ public class Player extends Rectangle{
                 bullet.setX(this.getX() + playerWidth/2);
                 bullet.setY(this.getY() - playerHeight);
                 root.getChildren().add(bullet);
-                bullet.move();
+                bullet.move2();
 
 
             }
