@@ -34,6 +34,7 @@ public class Bullet extends Rectangle {
                 root.getChildren().remove(this);
                 //System.out.println("gone");
             }
+
         }));
 
         //Cycle count is rough approximation 35 times * -10 px = -350 px going upwards

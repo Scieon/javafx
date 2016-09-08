@@ -13,18 +13,14 @@ import java.util.Random;
 public class Enemy extends Rectangle {
 
     private int health;
-    private Group root;
+    //private Group root;
 
-    public Enemy(Group root){
-        this.root = root;
-    }
-    public Enemy(int x, int y) {
-        super(x, y);
-    }
-
-    public void descend(){
-
-    }
+//    public Enemy(Group root){
+//        this.root = root;
+//    }
+//    public Enemy(int x, int y) {
+//        super(x, y);
+//    }
 
     public void spawn(int level){
 
@@ -36,22 +32,23 @@ public class Enemy extends Rectangle {
 
                 Random rand = new Random();
                 int randomXPosition = rand.nextInt(425) + 10; //50 is the maximum and the 1 is our minimum
-                int n = rand.nextInt(300) + 10;
 
-                Enemy fodder = new Enemy(75, 50);
-                fodder.setY(n); //50 just switch back to 50 since they always start from up 
-                fodder.setX(randomXPosition);
+                Foe fodder = new Foe(80, 50);
+                fodder.setPosition(randomXPosition,0);
+                //fodder.setY(n); //50 just switch back to 50 since they always start from up
+                //fodder.setX(randomXPosition);
+                Group root = (Group)this.getParent(); //not fodder.getParent() since fodder is not within scene yet...
                 root.getChildren().add(fodder);
+                fodder.descend();
+                //-- fodder is in scene now
 
             }
         }));
 
-
         timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.setCycleCount(5);
+        timeline.setCycleCount(1); //number of spawning
         timeline.play();
-        //Enemy fodder = new Enemy(75, 35);
-        //root.getChildren().add(fodder);
+
     }
 
 }
