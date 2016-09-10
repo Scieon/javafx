@@ -5,9 +5,13 @@ import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+
+import java.util.ArrayList;
 
 public class Bullet extends Rectangle {
 
@@ -34,6 +38,25 @@ public class Bullet extends Rectangle {
                 root.getChildren().remove(this);
                 //System.out.println("gone");
             }
+            if(true){
+
+                if(this.intersects(Enemy.fodder.getBoundsInParent())) {
+                    //System.out.println("Collision");
+                    root.getChildren().removeAll(this, Enemy.fodder);
+                }
+
+                for(Node r : root.getChildren()){
+                   // System.out.println(r);
+                }
+                //System.out.println("pause");
+                //impl_pickNode(428.0, 278.0);
+
+                Bounds b1 = this.getBoundsInLocal();
+                if(this.getBoundsInParent().intersects(Game.mob.getBoundsInParent())){
+                    System.out.println("colliding");
+                }
+//                System.out.println("colliding");
+            }
 
         }));
 
@@ -44,6 +67,36 @@ public class Bullet extends Rectangle {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.setCycleCount(35);
         timeline.play();
+    }
+
+    public void checkCollision(){
+        Group root = (Group)this.getParent();
+
+        ArrayList<Node> arr = new ArrayList<>();
+
+        for(Node r : root.getChildren()){
+            arr.add(r);
+
+        }
+        Rectangle r1, r2;
+
+        for(int i=2; i<arr.size();i++){
+             r1 = (Rectangle)arr.get(i);
+            if(r1.getWidth() == 80) //Got the foe
+                break;
+            if(this.intersects(root.getBoundsInParent())){
+
+            }
+        }
+
+        for(int i=2; i<arr.size();i++){
+            r2 = (Rectangle)arr.get(i);
+            if(r2.getWidth() == 10){ //Got the bullet
+
+            }
+
+        }
+
     }
 
 }

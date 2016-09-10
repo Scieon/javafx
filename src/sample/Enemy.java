@@ -13,6 +13,7 @@ import java.util.Random;
 public class Enemy extends Rectangle {
 
     private int health;
+    public static Foe fodder;
     //private Group root;
 
 //    public Enemy(Group root){
@@ -26,6 +27,7 @@ public class Enemy extends Rectangle {
 
         int [] spawnRate = {0,1}; //Spawn 1 per 5 cycle, etc..
 
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2000), ae -> {
 
             for(int i=0; i<spawnRate[level];i++){
@@ -33,7 +35,7 @@ public class Enemy extends Rectangle {
                 Random rand = new Random();
                 int randomXPosition = rand.nextInt(425) + 10; //50 is the maximum and the 1 is our minimum
 
-                Foe fodder = new Foe(80, 50);
+                fodder = new Foe(80, 50);
                 fodder.setPosition(randomXPosition,0);
                 //fodder.setY(n); //50 just switch back to 50 since they always start from up
                 //fodder.setX(randomXPosition);
@@ -46,7 +48,7 @@ public class Enemy extends Rectangle {
         }));
 
         timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.setCycleCount(1); //number of spawning
+        timeline.setCycleCount(2); //number of spawning
         timeline.play();
 
     }

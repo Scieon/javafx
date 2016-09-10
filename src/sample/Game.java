@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 
 public class Game extends Application {
 
+    private static Player player;
+    public static Enemy mob; //Privacy leak
+
     @Override
     public void start(Stage window) throws Exception{
 
@@ -27,8 +30,8 @@ public class Game extends Application {
 
         //Image space = new Image( "/resources/space.png" );
 
-        Player r = new Player();
-        Enemy mob = new Enemy();
+        player = new Player();
+        mob = new Enemy();
 
         //--
         for(int level=0; level<=1; level++){
@@ -36,11 +39,11 @@ public class Game extends Application {
 
         }
 
-        root.getChildren().addAll(r, mob);
-        System.out.println(root);
+        root.getChildren().addAll(player, mob);
+        //System.out.println(root);
 
         theScene.setOnKeyPressed(e->{
-            r.keyPressedEvent(e);
+            player.keyPressedEvent(e);
 
         });
 
