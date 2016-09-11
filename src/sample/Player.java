@@ -1,6 +1,6 @@
 package sample;
 
-import javafx.event.Event;
+
 import javafx.scene.Group;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
@@ -18,9 +18,27 @@ public class Player extends Rectangle{
         this.setY(400);
         this.setWidth(playerWidth);
         this.setHeight(playerHeight);
+        this.health = 3;
         //this.setArcHeight(20);
         //this.setArcWidth(20);
     }
+
+    public void decreaseHealth(){
+        this.health--;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void increaseScore(){
+        this.health++;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
     public void keyPressedEvent(KeyEvent e){
 
         if(e.getCode().toString() == "LEFT"){
@@ -44,7 +62,6 @@ public class Player extends Rectangle{
         if(e.getCode().toString()=="SPACE"){
 
             if(e.getCode().toString() == "SPACE"){
-                //root.getChildren().remove(this);
                 //Root should be here since it cannot be initialized in constructor (null pointer)
                 Group root = (Group)this.getParent();
                 Bullet bullet = new Bullet(10,50);

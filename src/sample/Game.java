@@ -6,6 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Game extends Application {
@@ -17,6 +19,8 @@ public class Game extends Application {
     public void start(Stage window) throws Exception{
 
         window.setTitle("Project Animus");
+
+        VBox vbox = new VBox(20); //Spaced out 20px
 
         Group root = new Group();
         Scene theScene = new Scene(root);
@@ -30,8 +34,14 @@ public class Game extends Application {
 
         //Image space = new Image( "/resources/space.png" );
 
+
         player = new Player();
         mob = new Enemy(root);
+        Label label1 =  new Label("Health: " + Integer.toString(player.getHealth()));
+        Label label2 =  new Label("Score: " + Integer.toString(player.getScore()));
+
+        vbox.setSpacing(10);
+        vbox.getChildren().addAll(label1, label2);
 
         //--
         for(int level=0; level<=1; level++){
@@ -39,7 +49,7 @@ public class Game extends Application {
 
         }
 
-        root.getChildren().addAll(player);
+        root.getChildren().addAll(player, vbox);
         //System.out.println(root);
 
         theScene.setOnKeyPressed(e->{

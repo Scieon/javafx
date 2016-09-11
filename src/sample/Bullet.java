@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class Bullet extends Rectangle {
 
+    final BulletController bulletGui = new BulletController();
+
     public Bullet(int x, int y) {
 
         super(x, y);
@@ -24,7 +26,7 @@ public class Bullet extends Rectangle {
     /**
      * Moves bullet vertically while handling possible collision scenarios
      * a) the ceiling [CHECK]
-     * b) an enemy
+     * b) an enemy [CHECK]
      * c) another bullet
      */
 
@@ -36,10 +38,13 @@ public class Bullet extends Rectangle {
             this.setY(this.getY()-10);
             if(this.getY()<=0){
                 root.getChildren().remove(this);
-                //System.out.println("gone");
+                System.out.println("gone");
+                bulletGui.btn_stopmes();
             }
 
-            checkCollision();
+            if(checkCollision() ==  true){
+                bulletGui.btn_stopmes();
+            }
 
         }));
 
@@ -48,11 +53,12 @@ public class Bullet extends Rectangle {
         //Should replace timeline by better threading option
 
         timeline.setCycleCount(Animation.INDEFINITE);
+        bulletGui.setAnimation(timeline);
         timeline.setCycleCount(35);
         timeline.play();
     }
 
-    public void checkCollision(){
+    public boolean checkCollision(){
 
         Group root = (Group)this.getParent();
 
@@ -63,10 +69,11 @@ public class Bullet extends Rectangle {
                 root.getChildren().removeAll(this, f);
                 Enemy.foeList.remove(f);
                // Game.remove(root,f,this);
+                return true;
 
             }
         }
-
+        return false;
     }
 
 }
