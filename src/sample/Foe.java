@@ -4,9 +4,13 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class Foe extends Enemy {
+import java.util.ArrayList;
+
+public class Foe extends Rectangle {
+
 
     public Foe(int width, int height){
         this.setWidth(width);
@@ -32,6 +36,7 @@ public class Foe extends Enemy {
         timeline.play();
 
     }
+
 
 
 

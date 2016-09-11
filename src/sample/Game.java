@@ -31,7 +31,7 @@ public class Game extends Application {
         //Image space = new Image( "/resources/space.png" );
 
         player = new Player();
-        mob = new Enemy();
+        mob = new Enemy(root);
 
         //--
         for(int level=0; level<=1; level++){
@@ -39,7 +39,7 @@ public class Game extends Application {
 
         }
 
-        root.getChildren().addAll(player, mob);
+        root.getChildren().addAll(player);
         //System.out.println(root);
 
         theScene.setOnKeyPressed(e->{
@@ -49,6 +49,10 @@ public class Game extends Application {
 
         window.show();
 
+    }
+
+    public static void remove(Group root, Foe f, Bullet b){
+        root.getChildren().removeAll(f,b);
     }
 
 }

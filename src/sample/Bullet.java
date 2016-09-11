@@ -38,25 +38,8 @@ public class Bullet extends Rectangle {
                 root.getChildren().remove(this);
                 //System.out.println("gone");
             }
-            if(true){
 
-                if(this.intersects(Enemy.fodder.getBoundsInParent())) {
-                    //System.out.println("Collision");
-                    root.getChildren().removeAll(this, Enemy.fodder);
-                }
-
-                for(Node r : root.getChildren()){
-                   // System.out.println(r);
-                }
-                //System.out.println("pause");
-                //impl_pickNode(428.0, 278.0);
-
-                Bounds b1 = this.getBoundsInLocal();
-                if(this.getBoundsInParent().intersects(Game.mob.getBoundsInParent())){
-                    System.out.println("colliding");
-                }
-//                System.out.println("colliding");
-            }
+            checkCollision();
 
         }));
 
@@ -70,31 +53,18 @@ public class Bullet extends Rectangle {
     }
 
     public void checkCollision(){
+
         Group root = (Group)this.getParent();
 
-        ArrayList<Node> arr = new ArrayList<>();
+        for(Foe f : Enemy.foeList){
+            if(this.intersects(f.getBoundsInParent())){
+                System.out.println("Collision");
 
-        for(Node r : root.getChildren()){
-            arr.add(r);
-
-        }
-        Rectangle r1, r2;
-
-        for(int i=2; i<arr.size();i++){
-             r1 = (Rectangle)arr.get(i);
-            if(r1.getWidth() == 80) //Got the foe
-                break;
-            if(this.intersects(root.getBoundsInParent())){
+                root.getChildren().removeAll(this, f);
+                Enemy.foeList.remove(f);
+               // Game.remove(root,f,this);
 
             }
-        }
-
-        for(int i=2; i<arr.size();i++){
-            r2 = (Rectangle)arr.get(i);
-            if(r2.getWidth() == 10){ //Got the bullet
-
-            }
-
         }
 
     }
