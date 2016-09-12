@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 public class Game extends Application {
 
     private static Player player;
-    public static Enemy mob; //Privacy leak
+    private static Enemy mob;
+    private Label health, score;
 
     @Override
     public void start(Stage window) throws Exception{
@@ -35,13 +36,13 @@ public class Game extends Application {
         //Image space = new Image( "/resources/space.png" );
 
 
-        player = new Player();
+        player = new Player(this);
         mob = new Enemy(root);
-        Label label1 =  new Label("Health: " + Integer.toString(player.getHealth()));
-        Label label2 =  new Label("Score: " + Integer.toString(player.getScore()));
+        health =  new Label("Health: " + Integer.toString(player.getHealth()));
+        score =  new Label("Score: " + Integer.toString(player.getScore()));
 
         vbox.setSpacing(10);
-        vbox.getChildren().addAll(label1, label2);
+        vbox.getChildren().addAll(health, score);
 
         //--
         for(int level=0; level<=1; level++){
@@ -61,8 +62,8 @@ public class Game extends Application {
 
     }
 
-    public static void remove(Group root, Foe f, Bullet b){
-        root.getChildren().removeAll(f,b);
-    }
+   public void updateText(){
+       score.setText("Score: " + Integer.toString(player.getScore()));
+   }
 
 }

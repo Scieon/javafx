@@ -12,15 +12,26 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Bullet extends Rectangle {
+public class Bullet extends Rectangle implements Subject {
 
     final BulletController bulletGui = new BulletController();
+    private Observer observer;
 
-    public Bullet(int x, int y) {
+    public Bullet(int x, int y, Observer observer) {
 
         super(x, y);
+        attach(observer);
 
+    }
+
+    public void attach(Observer observer){
+        this.observer = observer;
+    }
+
+    public void notifyAllObservers(){
+        observer.update();
     }
 
     /**
@@ -38,12 +49,16 @@ public class Bullet extends Rectangle {
             this.setY(this.getY()-10);
             if(this.getY()<=0){
                 root.getChildren().remove(this);
-                System.out.println("gone");
+                observer.detachSubject(this);
+                //System.out.println("gone");
                 bulletGui.btn_stopmes();
             }
 
             if(checkCollision() ==  true){
                 bulletGui.btn_stopmes();
+                observer.detachSubject(this);
+                //System.out.println("gone");
+                notifyAllObservers();
             }
 
         }));
@@ -54,7 +69,7 @@ public class Bullet extends Rectangle {
 
         timeline.setCycleCount(Animation.INDEFINITE);
         bulletGui.setAnimation(timeline);
-        timeline.setCycleCount(35);
+        timeline.setCycleCount(40);
         timeline.play();
     }
 
@@ -64,11 +79,10 @@ public class Bullet extends Rectangle {
 
         for(Foe f : Enemy.foeList){
             if(this.intersects(f.getBoundsInParent())){
-                System.out.println("Collision");
+                //System.out.println("Collision");
 
                 root.getChildren().removeAll(this, f);
                 Enemy.foeList.remove(f);
-               // Game.remove(root,f,this);
                 return true;
 
             }

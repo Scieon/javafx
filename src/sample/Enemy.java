@@ -47,7 +47,7 @@ public class Enemy {
         }));
 
         timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.setCycleCount(4); //number of spawning
+        timeline.setCycleCount(5); //number of spawning
         timeline.play();
 
     }
