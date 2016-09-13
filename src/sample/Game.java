@@ -2,7 +2,9 @@ package sample;
 
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -18,6 +20,10 @@ public class Game extends Application {
 
     @Override
     public void start(Stage window) throws Exception{
+
+        //consider using fxml for title screen
+        //Parent root2 = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        //user choice would then start the game regularly
 
         window.setTitle("Project Animus");
 

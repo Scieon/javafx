@@ -2,13 +2,14 @@ package sample;
 
 
 import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends Rectangle implements Observer{
+public class Player extends ImageView implements Observer{
 
 
     protected List<Subject> subject = new ArrayList<>();
@@ -19,10 +20,11 @@ public class Player extends Rectangle implements Observer{
     private Game game;
 
     public Player(Game game) {
+        super("sun.png");
         this.setX(256-playerWidth/2);
         this.setY(400);
-        this.setWidth(playerWidth);
-        this.setHeight(playerHeight);
+        this.setFitWidth(playerWidth);
+        this.setFitHeight(playerHeight+100);
         this.health = 3;
         this.score = 0;
         this.game = game;
