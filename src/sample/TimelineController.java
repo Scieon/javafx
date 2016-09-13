@@ -3,10 +3,9 @@ package sample;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 
-public class BulletController{
+public class TimelineController {
 
     private Timeline animation;
-
 
     public void setAnimation(Timeline animation) {
         this.animation = animation;

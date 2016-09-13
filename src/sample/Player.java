@@ -11,7 +11,7 @@ import java.util.List;
 public class Player extends Rectangle implements Observer{
 
 
-    private List<Subject> subject = new ArrayList<>();
+    protected List<Subject> subject = new ArrayList<>();
     private final int playerWidth = 100;
     private final int playerHeight = 50;
     private int health;
@@ -28,9 +28,19 @@ public class Player extends Rectangle implements Observer{
         this.game = game;
     }
 
-    public void update(){
-        this.increaseScore();
-        game.updateText();
+    public void update(int selector){
+        if(selector == 1){
+            this.increaseScore();
+            game.updateScore();
+        }
+
+        else if(selector == 2){
+            this.decreaseHealth();
+            game.updateHealth();
+            if(health == 0)
+                game.endGame();
+        }
+
     }
 
     public void detachSubject(Subject subject){

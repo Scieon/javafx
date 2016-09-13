@@ -37,7 +37,7 @@ public class Game extends Application {
 
 
         player = new Player(this);
-        mob = new Enemy(root);
+        mob = new Enemy(root, player);
         health =  new Label("Health: " + Integer.toString(player.getHealth()));
         score =  new Label("Score: " + Integer.toString(player.getScore()));
 
@@ -62,8 +62,14 @@ public class Game extends Application {
 
     }
 
-   public void updateText(){
+   public void updateScore(){
        score.setText("Score: " + Integer.toString(player.getScore()));
+   }
+
+   public void updateHealth(){ health.setText("Health: " + Integer.toString(player.getHealth()));}
+
+   public void endGame(){
+
    }
 
 }

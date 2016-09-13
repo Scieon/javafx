@@ -2,21 +2,15 @@ package sample;
 
 
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Bullet extends Rectangle implements Subject {
 
-    final BulletController bulletGui = new BulletController();
+    private final TimelineController bulletGui = new TimelineController();
     private Observer observer;
 
     public Bullet(int x, int y, Observer observer) {
@@ -30,9 +24,7 @@ public class Bullet extends Rectangle implements Subject {
         this.observer = observer;
     }
 
-    public void notifyAllObservers(){
-        observer.update();
-    }
+    public void notifyAllObservers(){observer.update(1);}
 
     /**
      * Moves bullet vertically while handling possible collision scenarios
@@ -54,7 +46,7 @@ public class Bullet extends Rectangle implements Subject {
                 bulletGui.btn_stopmes();
             }
 
-            if(checkCollision() ==  true){
+            if(checkCollision()){
                 bulletGui.btn_stopmes();
                 observer.detachSubject(this);
                 //System.out.println("gone");
