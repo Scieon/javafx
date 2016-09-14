@@ -28,7 +28,7 @@ public class Enemy {
         int [] spawnRate = {0,1}; //Spawn 1 per 5 cycle, etc..
 
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2000), ae -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> {
 
             for(int i=0; i<spawnRate[level];i++){
 

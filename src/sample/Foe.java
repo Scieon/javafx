@@ -5,17 +5,19 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class Foe extends Rectangle implements Subject{
+public class Foe extends ImageView implements Subject{
 
     private final TimelineController foeGui = new TimelineController();
     private Observer observer;
 
     public Foe(int width, int height, Observer observer){
-        this.setWidth(width);
-        this.setHeight(height);
+        super("Image/enemy.jpg");
+        this.setFitWidth(width);
+        this.setFitHeight(height);
         this.observer = observer;
 
     }
@@ -38,7 +40,7 @@ public class Foe extends Rectangle implements Subject{
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(200), ae -> {
 
-            this.setY(this.getY()+40);
+            this.setY(this.getY()+20);
 
             if(this.getParent() == null)
                 foeGui.btn_stopmes();

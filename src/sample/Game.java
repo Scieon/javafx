@@ -9,8 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 public class Game extends Application {
 
@@ -39,8 +41,12 @@ public class Game extends Application {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        //Image space = new Image( "/resources/space.png" );
-
+        //TODO
+        //Image space = new Image( "/Image/bg.png" );
+        ImageView image = new ImageView("Image/bg.png");
+        image.setFitWidth(512);
+        image.setFitHeight(400);
+        //TODO
 
         player = new Player(this);
         mob = new Enemy(root, player);
