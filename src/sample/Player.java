@@ -78,11 +78,11 @@ public class Player extends ImageView implements Observer{
         }
 
         if(e.getCode().toString()=="UP"){
-            //this.setY(this.getY()-25); //minus!!
+            this.setY(this.getY()-25); //minus!!
         }
 
         if(e.getCode().toString()=="DOWN"){
-            //this.setY(this.getY()+25);
+            this.setY(this.getY()+25);
         }
 
         if(e.getCode().toString()=="SPACE"){

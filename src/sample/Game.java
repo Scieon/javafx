@@ -19,6 +19,7 @@ public class Game extends Application {
     private static Player player;
     private static Enemy mob;
     private Label health, score;
+    private Stage window;
 
     @Override
     public void start(Stage window) throws Exception{
@@ -26,6 +27,8 @@ public class Game extends Application {
         //consider using fxml for title screen
         //Parent root2 = FXMLLoader.load(getClass().getResource("sample.fxml"));
         //user choice would then start the game regularly
+
+        this.window = window;
 
         window.setTitle("Project Animus");
 
@@ -70,6 +73,11 @@ public class Game extends Application {
 
         });
 
+        window.setOnCloseRequest(e->{
+            //e.consume(); //Consume the exit request
+           // closeProgram();
+        });
+
         window.show();
 
     }
@@ -83,5 +91,12 @@ public class Game extends Application {
    public void endGame(){
 
    }
+
+   //TODO pause timelines when close program is opened
+    private void closeProgram(){
+        boolean answer = ConfirmBox.display("Close", "Are you sure you want to exit?");
+        if(answer)
+            window.close();
+    }
 
 }
