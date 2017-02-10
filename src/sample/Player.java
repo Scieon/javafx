@@ -14,17 +14,17 @@ public class Player extends ImageView implements Observer{
 
     protected List<Subject> subject = new ArrayList<>();
     private final int playerWidth = 100;
-    private final int playerHeight = 50;
+    private final int playerHeight = 100;
     private int health;
     private int score;
     private Game game;
 
     public Player(Game game) {
-        super("sun.png");
+        super("Image/ship.png");
         this.setX(256-playerWidth/2);
         this.setY(400);
         this.setFitWidth(playerWidth);
-        this.setFitHeight(playerHeight+100);
+        this.setFitHeight(playerHeight);
         this.health = 3;
         this.score = 0;
         this.game = game;
@@ -78,11 +78,11 @@ public class Player extends ImageView implements Observer{
         }
 
         if(e.getCode().toString()=="UP"){
-            //this.setY(this.getY()-25); //minus!!
+            this.setY(this.getY()-25); //minus!!
         }
 
         if(e.getCode().toString()=="DOWN"){
-            //this.setY(this.getY()+25);
+            this.setY(this.getY()+25);
         }
 
         if(e.getCode().toString()=="SPACE"){
@@ -92,7 +92,7 @@ public class Player extends ImageView implements Observer{
                 Group root = (Group)this.getParent();
                 Bullet bullet = new Bullet(10,50, this);
                 bullet.setX(this.getX() + playerWidth/2);
-                bullet.setY(this.getY() - playerHeight);
+                bullet.setY(this.getY() - playerHeight + 50);
                 root.getChildren().add(bullet);
                 subject.add(bullet);
                 bullet.move();

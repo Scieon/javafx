@@ -8,7 +8,7 @@ import javafx.geometry.*;
 
 public class ConfirmBox {
 
-    static boolean answer = true;
+    static boolean answer;
 
     public static boolean display(String title, String message){
         Stage window = new Stage();
@@ -18,7 +18,6 @@ public class ConfirmBox {
         Label label =  new Label();
         label.setText(message);
 
-        //Create 2 buttons
         Button yesButton = new Button("Yes");
         Button noButton = new Button("No");
 
@@ -38,7 +37,6 @@ public class ConfirmBox {
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);
         window.setScene(scene);
-        //window.show();
         window.showAndWait();
 
         return answer;

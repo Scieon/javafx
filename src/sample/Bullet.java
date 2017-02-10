@@ -5,17 +5,20 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class Bullet extends Rectangle implements Subject {
+public class Bullet extends ImageView implements Subject {
 
     private final TimelineController bulletGui = new TimelineController();
     private Observer observer;
 
     public Bullet(int x, int y, Observer observer) {
 
-        super(x, y);
+        super("Image/bullet1.png");
+        this.setFitWidth(x);
+        this.setFitHeight(y);
         attach(observer);
 
     }
